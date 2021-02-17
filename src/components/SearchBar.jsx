@@ -1,0 +1,50 @@
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import TextField from "@material-ui/core/TextField";
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import SearchIcon from "@material-ui/icons/Search";
+
+const SearchBar = ({ searchArticles }) => {
+  const [text, setText] = useState("");
+
+  const handleChange = (e) => {
+    console.log(e.target.value)
+    setText(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    console.log(text)
+    e.preventDefault();
+    searchArticles(text);
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          label="Search articles"
+          type="text"
+          name="text"
+          value={text}
+          onChange={handleChange}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment>
+                <IconButton>
+                  <SearchIcon />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+      </form>
+    </div>
+  );
+};
+
+SearchBar.propTypes = {
+  searchArticles: PropTypes.func.isRequired,
+};
+
+export default SearchBar;
