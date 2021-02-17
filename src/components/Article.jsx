@@ -48,7 +48,8 @@ const Article = (props) => {
               href={url}
               target="_blank"
               rel="noreferrer"
-              style={{ textDecoration: "none", float: "right" }}
+              style={{ textDecoration: "none" }}
+              className="top-stories-text"
             >
               Learn More
             </a>
@@ -60,7 +61,7 @@ const Article = (props) => {
 };
 
 Article.propTypes = {
-  article: PropTypes.object.isRequired,
+  article: PropTypes.object,
 };
 
 export default Article;

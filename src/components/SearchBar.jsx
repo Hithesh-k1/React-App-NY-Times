@@ -9,12 +9,10 @@ const SearchBar = ({ searchArticles }) => {
   const [text, setText] = useState("");
 
   const handleChange = (e) => {
-    console.log(e.target.value)
     setText(e.target.value);
   };
 
   const handleSubmit = (e) => {
-    console.log(text)
     e.preventDefault();
     searchArticles(text);
   };

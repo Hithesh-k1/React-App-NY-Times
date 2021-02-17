@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Chip from "@material-ui/core/Chip";
-
+import "../pages/Home.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Chips(props) {
-  const { varient, size, label, onClick, color } = props;
+  const { variant, size, label, onClick, color } = props;
   const classes = useStyles();
 
   return (
@@ -23,11 +23,10 @@ export default function Chips(props) {
       <Chip
         color={color}
         onClick={onClick}
-        variant="outlined"
+        variant={variant}
         size={size}
         label={label}
       />
     </div>
   );
 }
-

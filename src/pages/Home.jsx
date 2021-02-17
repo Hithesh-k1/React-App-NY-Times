@@ -29,14 +29,13 @@ function Home() {
   }, []);
 
   const handleSectionLableClick = (section) => {
-    console.info("You clicked the Chip.", section);
     getTopStoriesData(section);
   };
 
   const getTopStoriesData = (section) => {
     getTopStories(section).then(function (response) {
       // handle success
-      setArticles(response.results);
+      setArticles(response?.results);
     });
   };
 
@@ -49,17 +48,19 @@ function Home() {
   };
 
   const SectionLables = () => {
-    const Lables = sections.map((section) => {
-      return (
-        <Chips
-          onClick={() => handleSectionLableClick(section)}
-          color="primary"
-          variant="outlined"
-          size="large"
-          label={section}
-        />
-      );
-    });
+    const Lables = React.Children.toArray(
+      sections.map((section) => {
+        return (
+          <Chips
+            onClick={() => handleSectionLableClick(section)}
+            color="primary"
+            variant="outlined"
+            size="medium"
+            label={section}
+          />
+        );
+      })
+    );
     return Lables;
   };
 

@@ -26,23 +26,25 @@ export default function Articles({ loading, articles }) {
         <div className={classes.root}>
           <Grid container spacing={3}>
             {articles &&
-              articles.map((article) => (
-                <Grid item xs={12} sm={4} key={article._id}>
-                  {console.log(article.multimedia?.[0]?.url)}
-                  <Article
-                    title={article?.headline?.main || article?.title}
-                    description={article?.snippet || article.abstract}
-                    src={
-                      article.multimedia?.[0]?.url ||
-                      `https://nytimes.com/${article.multimedia?.[0]?.url}`
-                    }
-                    alt={article.title}
-                    section={article?.news_desk || article.section}
-                    url={article.web_url || article.url}
-                    original={article.byline.original}
-                  />
-                </Grid>
-              ))}
+              React.Children.toArray(
+                articles.map((article) => (
+                  <Grid item xs={12} sm={4} key={article._id}>
+                    <Article
+                      title={article?.headline?.main || article?.title}
+                      description={article?.snippet || article.abstract}
+                      src={
+                        article.multimedia?.[0]?.url.includes("https")
+                          ? article.multimedia?.[0]?.url
+                          : `https://nytimes.com/${article.multimedia?.[0]?.url}`
+                      }
+                      alt={article.title}
+                      section={article?.news_desk || article.section}
+                      url={article.web_url || article.url}
+                      original={article.byline.original}
+                    />
+                  </Grid>
+                ))
+              )}
           </Grid>
         </div>
       )}
